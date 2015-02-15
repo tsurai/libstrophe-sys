@@ -1,4 +1,4 @@
-#![crate_name = "libstrophe"]
+#![crate_name = "strophe"]
 #![crate_type = "lib"]
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
