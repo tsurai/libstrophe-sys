@@ -1,9 +1,18 @@
 [package]
 
 name = "strophe"
+license = "MIT"
 version = "0.0.1"
 authors = ["Cristian Kubis <cristian.kubis@tsunix.de>"]
-license = "MIT"
+description = "Rust bindings for libstrophe a simple, lightweight library for writing XMPP clients."
+documentation = "https://github.com/tsurai/libstrophe-rs"
+homepage = "https://github.com/tsurai/libstrophe-rs"
+repository = "https://github.com/tsurai/libstrophe-rs"
+readme = "README.md"
+keywords = ["strophe","libstrophe", "xmpp"]
+
+[dependencies]
+libc = "*"
 
 [lib]
 name = "strophe"

@@ -15,7 +15,7 @@ pub struct xmpp_conn_t {
   _ref: c_uint,
   ctx: *mut xmpp_ctx_t,
   _type: c_int,
-  
+
   state: c_int,
   timeout_stamp: uint64_t,
   error: c_int,
@@ -125,7 +125,6 @@ pub struct hash_t {
   num_keys: c_int,
   entries: *mut *mut hashentry_t
 }
-
 
 #[link(name="strophe")]
 extern {
