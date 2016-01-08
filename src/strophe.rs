@@ -176,6 +176,24 @@ pub enum xmpp_error_type_t {
   XMPP_SE_XML_NOT_WELL_FORMED
 }
 
+pub const XMPP_NS_CLIENT: &'static str = "jabber:client";
+pub const XMPP_NS_COMPONENT: &'static str = "jabber:component:accept";
+pub const XMPP_NS_STREAMS: &'static str = "http://etherx.jabber.org/streams";
+pub const XMPP_NS_STREAMS_IETF: &'static str = "urn:ietf:params:xml:ns:xmpp-streams";
+pub const XMPP_NS_TLS: &'static str = "urn:ietf:params:xml:ns:xmpp-tls";
+pub const XMPP_NS_SASL: &'static str = "urn:ietf:params:xml:ns:xmpp-sasl";
+pub const XMPP_NS_BIND: &'static str = "urn:ietf:params:xml:ns:xmpp-bind";
+pub const XMPP_NS_SESSION: &'static str = "urn:ietf:params:xml:ns:xmpp-session";
+pub const XMPP_NS_AUTH: &'static str = "jabber:iq:auth";
+pub const XMPP_NS_DISCO_INFO: &'static str = "http://jabber.org/protocol/disco#info";
+pub const XMPP_NS_DISCO_ITEMS: &'static str = "http://jabber.org/protocol/disco#items";
+pub const XMPP_NS_ROSTER: &'static str = "jabber:iq:roster";
+
+pub const XMPP_EOK:    c_int = 0;
+pub const XMPP_EMEM:   c_int = -1;
+pub const XMPP_EINVOP: c_int = -2;
+pub const XMPP_EINT:   c_int = -3;
+
 #[link(name="strophe")]
 extern {
   // connection management
