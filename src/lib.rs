@@ -15,7 +15,7 @@ pub use xmpp_error_type_t::*;
 
 pub type xmpp_handler = Option<extern "C" fn(*const xmpp_conn_t,
                                              *const xmpp_stanza_t,
-                                             *const c_void)>;
+                                             *const c_void) -> c_int>;
 pub type xmpp_conn_handler = Option<extern "C" fn(*const xmpp_conn_t,
                                                   xmpp_conn_event_t,
                                                   c_int,
@@ -23,7 +23,7 @@ pub type xmpp_conn_handler = Option<extern "C" fn(*const xmpp_conn_t,
                                                   *const c_void)>;
 pub type xmpp_timed_handler = Option<extern "C" fn(*const xmpp_conn_t,
                                                    *const xmpp_stanza_t,
-                                                   *const c_void)>;
+                                                   *const c_void) -> c_int>;
 pub type xmpp_log_handler = Option<extern "C" fn(*const c_void,
                                                  xmpp_log_level_t,
                                                  *const c_char,
@@ -317,4 +317,6 @@ extern "C" {
     pub fn xmpp_stanza_set_type(stanza: *const xmpp_stanza_t, _type: *const c_char) -> c_int;
     pub fn xmpp_stanza_get_attribute(stanza: *const xmpp_stanza_t,
                                      name: *const c_char) -> *mut c_char;
+    pub fn xmpp_stanza_set_to(stanza: *const xmpp_stanza_t,
+                              to: *const c_char) -> c_int;
 }
