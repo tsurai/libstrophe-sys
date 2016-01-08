@@ -10,9 +10,13 @@ homepage = "https://github.com/tsurai/libstrophe-rs"
 repository = "https://github.com/tsurai/libstrophe-rs"
 readme = "README.md"
 keywords = ["strophe","libstrophe", "xmpp"]
+build = "build.rs"
 
 [dependencies]
 libc = "*"
+
+[build-dependencies]
+pkg-config = "0.3.2"
 
 [lib]
 name = "strophe"
