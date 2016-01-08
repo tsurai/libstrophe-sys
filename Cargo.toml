@@ -13,7 +13,7 @@ keywords = ["strophe","libstrophe", "xmpp", "jabber"]
 build = "build.rs"
 
 [dependencies]
-libc = "*"
+libc = "^0.2.4"
 
 [build-dependencies]
 pkg-config = "0.3.2"
