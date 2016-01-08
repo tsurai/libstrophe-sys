@@ -53,7 +53,7 @@ extern "C" fn conn_handler(conn: *const xmpp_conn_t,
         xmpp_stanza_set_name(iq, str_to_ptr("iq"));
         xmpp_stanza_set_type(iq, str_to_ptr("get"));
         xmpp_stanza_set_id(iq, str_to_ptr("active1"));
-        xmpp_stanza_set_to(iq, str_to_ptr("xxxxxxxx.com"));
+        xmpp_stanza_set_to(iq, str_to_ptr("jabber.ccc.de"));
 
         // create query to request active resources on the server
         let query = xmpp_stanza_new(ctx);
@@ -138,11 +138,11 @@ fn get_stanza_attr<'a>(item: *const xmpp_stanza_t,
 }
 
 fn str_to_ptr<T: Into<Vec<u8>>>(input: T) -> *const i8 {
-  CString::new(input).unwrap().as_bytes_with_nul().as_ptr() as *const i8
+    CString::new(input).unwrap().as_bytes_with_nul().as_ptr() as *const i8
 }
 
 fn ptr_to_str<'a>(ptr: *const c_char) -> &'a str {
-  unsafe {
-    str::from_utf8(CStr::from_ptr(ptr).to_bytes()).unwrap()
-  }
+    unsafe {
+        str::from_utf8(CStr::from_ptr(ptr).to_bytes()).unwrap()
+    }
 }
