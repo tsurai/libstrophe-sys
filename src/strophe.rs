@@ -28,7 +28,7 @@ pub struct xmpp_conn_t {
   tls_failed: c_int,
   sasl_support: c_int,
   secured: c_int,
-  
+
   bind_required: c_int,
   session_required: c_int,
 
@@ -79,12 +79,12 @@ pub struct xmpp_ctx_t {
   mem: *const xmpp_mem_t,
   log: *const xmpp_log_t,
   loop_status: c_int,
-  connlist: *mut xmpp_connlist_t 
+  connlist: *mut xmpp_connlist_t
 }
 
 #[repr(C)]
 pub struct xmpp_connlist_t {
-  conn: *mut xmpp_conn_t, 
+  conn: *mut xmpp_conn_t,
   next: *mut xmpp_connlist_t
 }
 
@@ -126,6 +126,56 @@ pub struct hash_t {
   entries: *mut *mut hashentry_t
 }
 
+#[repr(C)]
+pub enum xmpp_log_level_t {
+  XMPP_LEVEL_DEBUG,
+  XMPP_LEVEL_INFO,
+  XMPP_LEVEL_WARN,
+  XMPP_LEVEL_ERROR
+}
+
+#[repr(C)]
+pub enum xmpp_conn_type_t {
+  XMPP_UNKNOWN,
+  XMPP_CLIENT,
+  XMPP_COMPONENT
+}
+
+#[repr(C)]
+pub enum xmpp_conn_event_t {
+  XMPP_CONN_CONNECT,
+  XMPP_CONN_DISCONNECT,
+  XMPP_CONN_FAIL
+}
+
+#[repr(C)]
+pub enum xmpp_error_type_t {
+  XMPP_SE_BAD_FORMAT,
+  XMPP_SE_BAD_NS_PREFIX,
+  XMPP_SE_CONFLICT,
+  XMPP_SE_CONN_TIMEOUT,
+  XMPP_SE_HOST_GONE,
+  XMPP_SE_HOST_UNKNOWN,
+  XMPP_SE_IMPROPER_ADDR,
+  XMPP_SE_INTERNAL_SERVER_ERROR,
+  XMPP_SE_INVALID_FROM,
+  XMPP_SE_INVALID_ID,
+  XMPP_SE_INVALID_NS,
+  XMPP_SE_INVALID_XML,
+  XMPP_SE_NOT_AUTHORIZED,
+  XMPP_SE_POLICY_VIOLATION,
+  XMPP_SE_REMOTE_CONN_FAILED,
+  XMPP_SE_RESOURCE_CONSTRAINT,
+  XMPP_SE_RESTRICTED_XML,
+  XMPP_SE_SEE_OTHER_HOST,
+  XMPP_SE_SYSTEM_SHUTDOWN,
+  XMPP_SE_UNDEFINED_CONDITION,
+  XMPP_SE_UNSUPPORTED_ENCODING,
+  XMPP_SE_UNSUPPORTED_STANZA_TYPE,
+  XMPP_SE_UNSUPPORTED_VERSION,
+  XMPP_SE_XML_NOT_WELL_FORMED
+}
+
 #[link(name="strophe")]
 extern {
   // connection management
@@ -151,7 +201,7 @@ extern {
   pub fn xmpp_initialize();
   pub fn xmpp_shutdown();
   pub fn xmpp_version_check(major: c_int, minor: c_int) -> c_int;
- 
+
   // event loop
   pub fn xmpp_run_once(ctx: *mut xmpp_ctx_t, timeout: c_ulong);
   pub fn xmpp_run(ctx: *mut xmpp_ctx_t);
@@ -195,3 +245,4 @@ extern {
   pub fn xmpp_stanza_set_type(stanza: *const xmpp_stanza_t, _type: *const c_char) -> c_int;
   pub fn xmpp_stanza_get_attribute(stanza: *const xmpp_stanza_t, name: *const c_char) -> *mut c_char;
 }
+
