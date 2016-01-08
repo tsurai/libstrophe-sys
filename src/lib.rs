@@ -1,5 +1,4 @@
 #![allow(non_camel_case_types)]
-
 #![crate_name = "strophe"]
 #![crate_type = "lib"]
 #![crate_type = "dylib"]
@@ -8,6 +7,11 @@
 extern crate libc;
 
 use libc::*;
+
+pub use xmpp_log_level_t::*;
+pub use xmpp_conn_type_t::*;
+pub use xmpp_conn_event_t::*;
+pub use xmpp_error_type_t::*;
 
 pub type xmpp_handler = Option<extern "C" fn(*const xmpp_conn_t,
                                              *const xmpp_stanza_t,
@@ -146,6 +150,7 @@ pub struct hash_t {
 }
 
 #[repr(C)]
+#[derive(PartialEq, Eq)]
 pub enum xmpp_log_level_t {
     XMPP_LEVEL_DEBUG,
     XMPP_LEVEL_INFO,
@@ -154,6 +159,7 @@ pub enum xmpp_log_level_t {
 }
 
 #[repr(C)]
+#[derive(PartialEq, Eq)]
 pub enum xmpp_conn_type_t {
     XMPP_UNKNOWN,
     XMPP_CLIENT,
@@ -161,6 +167,7 @@ pub enum xmpp_conn_type_t {
 }
 
 #[repr(C)]
+#[derive(PartialEq, Eq)]
 pub enum xmpp_conn_event_t {
     XMPP_CONN_CONNECT,
     XMPP_CONN_DISCONNECT,
@@ -168,6 +175,7 @@ pub enum xmpp_conn_event_t {
 }
 
 #[repr(C)]
+#[derive(PartialEq, Eq)]
 pub enum xmpp_error_type_t {
     XMPP_SE_BAD_FORMAT,
     XMPP_SE_BAD_NS_PREFIX,
