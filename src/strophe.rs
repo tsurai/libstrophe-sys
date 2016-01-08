@@ -3,9 +3,9 @@
 use libc::*;
 
 pub type xmpp_handler = Option<extern "C" fn(*const xmpp_conn_t, *const xmpp_stanza_t, *const c_void)>;
-pub type xmpp_conn_handler = Option<extern "C" fn(*const xmpp_conn_t, c_int, c_int, *const xmpp_stream_error_t, *const c_void)>;
+pub type xmpp_conn_handler = Option<extern "C" fn(*const xmpp_conn_t, xmpp_conn_event_t, c_int, *const xmpp_stream_error_t, *const c_void)>;
 pub type xmpp_timed_handler = Option<extern "C" fn(*const xmpp_conn_t, *const xmpp_stanza_t, *const c_void)>;
-pub type xmpp_log_handler = Option<extern "C" fn(*const c_void, c_int, *const c_char, *const c_char, *const c_char)>;
+pub type xmpp_log_handler = Option<extern "C" fn(*const c_void, xmpp_log_level_t, *const c_char, *const c_char, *const c_char)>;
 pub type xmpp_open_handler = Option<extern "C" fn(*const xmpp_conn_t)>;
 
 pub type hash_free_func = Option<extern "C" fn(*const xmpp_ctx_t, *mut c_void)>;
@@ -211,7 +211,7 @@ extern {
   pub fn xmpp_send(conn: *const xmpp_conn_t, stanza: *const xmpp_stanza_t);
 
   // context objects
-  pub fn xmpp_get_default_logger(level: c_int) -> *mut xmpp_log_t;
+  pub fn xmpp_get_default_logger(level: xmpp_log_level_t) -> *mut xmpp_log_t;
   pub fn xmpp_ctx_new(mem: *const xmpp_mem_t, log: *const xmpp_log_t) -> *mut xmpp_ctx_t;
   pub fn xmpp_ctx_free(ctx: *const xmpp_ctx_t);
 
