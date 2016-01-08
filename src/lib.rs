@@ -1,4 +1,5 @@
 #![allow(non_camel_case_types)]
+
 #![crate_name = "strophe"]
 #![crate_type = "lib"]
 #![crate_type = "dylib"]
@@ -221,6 +222,10 @@ pub const XMPP_EMEM:   c_int = -1;
 pub const XMPP_EINVOP: c_int = -2;
 pub const XMPP_EINT:   c_int = -3;
 
+pub const XMPP_CONN_FLAG_DISABLE_TLS:   c_long = 1;
+pub const XMPP_CONN_FLAG_MANDATORY_TLS: c_long = 2;
+pub const XMPP_CONN_FLAG_LEGACY_SSL:    c_long = 4;
+
 #[link(name="strophe")]
 extern "C" {
     // connection management
@@ -233,13 +238,23 @@ extern "C" {
     pub fn xmpp_conn_get_pass(conn: *const xmpp_conn_t) -> *const c_char;
     pub fn xmpp_conn_set_pass(conn: *const xmpp_conn_t, pass: *const c_char);
     pub fn xmpp_conn_get_context(conn: *const xmpp_conn_t) -> *mut xmpp_ctx_t;
+    pub fn xmpp_conn_disable_tls(conn: *const xmpp_conn_t);
+    pub fn xmpp_conn_is_secured(conn: *const xmpp_conn_t) -> c_int;
     pub fn xmpp_connect_client(conn: *const xmpp_conn_t,
                                altdomain: *const c_char,
                                altport: c_ushort,
                                callback: xmpp_conn_handler,
                                userdata: *const c_void) -> c_int;
+    pub fn xmpp_connect_component(conn: *const xmpp_conn_t,
+                                  server: *const c_char,
+                                  port: c_ushort,
+                                  callback: xmpp_conn_handler,
+                                  userdata: *const c_void) -> c_int;
     pub fn xmpp_disconnect(conn: *const xmpp_conn_t);
     pub fn xmpp_send(conn: *const xmpp_conn_t, stanza: *const xmpp_stanza_t);
+    pub fn xmpp_send_raw(conn: *const xmpp_conn_t,
+                         data: *const c_char,
+                         len: size_t);
 
     // context objects
     pub fn xmpp_get_default_logger(level: xmpp_log_level_t) -> *mut xmpp_log_t;
@@ -319,4 +334,23 @@ extern "C" {
                                      name: *const c_char) -> *mut c_char;
     pub fn xmpp_stanza_set_to(stanza: *const xmpp_stanza_t,
                               to: *const c_char) -> c_int;
+    pub fn xmpp_conn_set_flags(conn: *const xmpp_conn_t, flags: c_long) -> c_int;
+    pub fn xmpp_conn_get_flags(conn: *const xmpp_conn_t) -> c_long;
+
+    // jid functions
+    pub fn xmpp_jid_new(ctx: *const xmpp_ctx_t,
+                        node: *const c_char,
+                        domain: *const c_char,
+                        resource: *const c_char) -> *const c_char;
+    pub fn xmpp_jid_bare(ctx: *const xmpp_ctx_t,
+                         jid: *const c_char) -> *const c_char;
+    pub fn xmpp_jid_node(ctx: *const xmpp_ctx_t,
+                         jid: *const c_char) -> *const c_char;
+    pub fn xmpp_jid_domain(ctx: *const xmpp_ctx_t,
+                           jid: *const c_char) -> *const c_char;
+    pub fn xmpp_jid_resource(ctx: *const xmpp_ctx_t,
+                             jid: *const c_char) -> *const c_char;
+
+    // uuid
+    pub fn xmpp_uuid_gen(ctx: *const xmpp_ctx_t) -> *mut c_char;
 }
