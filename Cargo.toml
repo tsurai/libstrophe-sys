@@ -4,12 +4,12 @@ name = "strophe"
 license = "MIT"
 version = "0.0.1"
 authors = ["Cristian Kubis <cristian.kubis@tsunix.de>"]
-description = "Rust bindings for libstrophe a simple, lightweight library for writing XMPP clients."
-documentation = "https://github.com/tsurai/libstrophe-rs"
-homepage = "https://github.com/tsurai/libstrophe-rs"
-repository = "https://github.com/tsurai/libstrophe-rs"
+description = "FFI bindings to libstrophe a simple, lightweight library for writing XMPP clients."
+documentation = "https://github.com/tsurai/libstrophe-sys"
+homepage = "https://github.com/tsurai/libstrophe-sys"
+repository = "https://github.com/tsurai/libstrophe-sys"
 readme = "README.md"
-keywords = ["strophe","libstrophe", "xmpp"]
+keywords = ["strophe","libstrophe", "xmpp", "jabber"]
 build = "build.rs"
 
 [dependencies]
