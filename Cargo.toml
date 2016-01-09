@@ -1,6 +1,5 @@
 [package]
-
-name = "strophe"
+name = "libstrophe-sys"
 license = "MIT"
 version = "0.0.1"
 authors = ["Cristian Kubis <cristian.kubis@tsunix.de>"]
