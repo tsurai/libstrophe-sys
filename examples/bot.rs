@@ -9,6 +9,13 @@ use std::ffi::{CStr, CString};
 use libc::*;
 use strophe::*;
 
+/*
+ * Simple echoing bot example
+ *
+ * Rust version of the original bot.c example file
+ * https://github.com/strophe/libstrophe/blob/master/examples/bot.c
+ */
+
 extern "C" fn version_handler(conn: *const xmpp_conn_t,
                               stanza: *const xmpp_stanza_t,
                               userdata: *const c_void) -> i32 {

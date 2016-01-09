@@ -10,6 +10,14 @@ use std::str::FromStr;
 use libc::*;
 use strophe::*;
 
+/*
+ * Demonstration of a simple connection to a server
+ * as an external component (See XEP-0114)
+ *
+ * Rust version of the original component.c example file
+ * https://github.com/strophe/libstrophe/blob/master/examples/component.c
+ */
+
 extern "C" fn conn_handler(conn: *const xmpp_conn_t,
                            status: xmpp_conn_event_t,
                            error: i32,

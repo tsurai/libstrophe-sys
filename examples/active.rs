@@ -9,6 +9,13 @@ use std::ffi::{CStr, CString};
 use libc::*;
 use strophe::*;
 
+/*
+ * Basic handler function demonstrations
+ *
+ * Rust version of the original active.c example file
+ * https://github.com/strophe/libstrophe/blob/master/examples/active.c
+ */
+
 extern "C" fn reply_handler(conn: *const xmpp_conn_t,
                             stanza: *const xmpp_stanza_t,
                             userdata: *const c_void) -> i32 {

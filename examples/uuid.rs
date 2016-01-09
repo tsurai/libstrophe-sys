@@ -7,6 +7,13 @@ use std::ffi::CStr;
 use libc::*;
 use strophe::*;
 
+/*
+ * Example generating a new uuid
+ *
+ * Rust version of the original uuid.c example file
+ * https://github.com/strophe/libstrophe/blob/master/examples/uuid.c
+ */
+
 fn main() {
     unsafe {
         let ctx = xmpp_ctx_new(ptr::null(), ptr::null());

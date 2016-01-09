@@ -9,6 +9,13 @@ use std::ffi::{CStr, CString};
 use libc::*;
 use strophe::*;
 
+/*
+ * Example printing out the user's roster
+ *
+ * Rust version of the original roster.c example file
+ * https://github.com/strophe/libstrophe/blob/master/examples/roster.c
+ */
+
 extern "C" fn reply_handler(conn: *const xmpp_conn_t,
                             stanza: *const xmpp_stanza_t,
                             userdata: *const c_void) -> i32 {

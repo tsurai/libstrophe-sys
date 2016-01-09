@@ -9,6 +9,13 @@ use std::ffi::CString;
 use libc::*;
 use strophe::*;
 
+/*
+ * Connection settings example
+ *
+ * Rust version of the original basic.c example file
+ * https://github.com/strophe/libstrophe/blob/master/examples/basic.c
+ */
+
 extern "C" fn conn_handler(conn: *const xmpp_conn_t,
                            status: xmpp_conn_event_t,
                            error: i32,
