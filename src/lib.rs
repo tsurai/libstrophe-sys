@@ -318,6 +318,8 @@ extern "C" {
                                           text: *const c_char,
                                           size: size_t) -> c_int;
     pub fn xmpp_stanza_get_id(stanza: *const xmpp_stanza_t) -> *mut c_char;
+    pub fn xmpp_stanza_get_to(stanza: *const xmpp_stanza_t) -> *mut c_char;
+    pub fn xmpp_stanza_get_from(stanza: *const xmpp_stanza_t) -> *mut c_char;
     pub fn xmpp_stanza_get_ns(stanza: *const xmpp_stanza_t) -> *mut c_char;
     pub fn xmpp_stanza_get_type(stanza: *const xmpp_stanza_t) -> *mut c_char;
     pub fn xmpp_stanza_get_child_by_name(stanza: *const xmpp_stanza_t,
@@ -334,6 +336,8 @@ extern "C" {
                                      name: *const c_char) -> *mut c_char;
     pub fn xmpp_stanza_set_to(stanza: *const xmpp_stanza_t,
                               to: *const c_char) -> c_int;
+    pub fn xmpp_stanza_set_from(stanza: *const xmpp_stanza_t,
+                                from: *const c_char) -> c_int;
     pub fn xmpp_conn_set_flags(conn: *const xmpp_conn_t, flags: c_long) -> c_int;
     pub fn xmpp_conn_get_flags(conn: *const xmpp_conn_t) -> c_long;
 
@@ -351,10 +355,9 @@ extern "C" {
     pub fn xmpp_jid_resource(ctx: *const xmpp_ctx_t,
                              jid: *const c_char) -> *const c_char;
 
-    // uuid
     pub fn xmpp_uuid_gen(ctx: *const xmpp_ctx_t) -> *mut c_char;
-
     pub fn xmpp_alloc(ctx: *const xmpp_ctx_t, size: size_t);
     pub fn xmpp_free(ctx: *const xmpp_ctx_t, ptr: *const c_void);
     pub fn xmpp_realloc(ctx: *const xmpp_ctx_t, ptr: c_void, size: size_t);
+    pub fn xmpp_stanza_reply(ctx: *const xmpp_stanza_t) -> *mut xmpp_stanza_t;
 }
