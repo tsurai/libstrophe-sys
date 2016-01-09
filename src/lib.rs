@@ -353,4 +353,8 @@ extern "C" {
 
     // uuid
     pub fn xmpp_uuid_gen(ctx: *const xmpp_ctx_t) -> *mut c_char;
+
+    pub fn xmpp_alloc(ctx: *const xmpp_ctx_t, size: size_t);
+    pub fn xmpp_free(ctx: *const xmpp_ctx_t, ptr: *const c_void);
+    pub fn xmpp_realloc(ctx: *const xmpp_ctx_t, ptr: c_void, size: size_t);
 }
