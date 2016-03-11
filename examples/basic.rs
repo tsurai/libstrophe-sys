@@ -28,6 +28,7 @@ extern "C" fn conn_handler(conn: *const xmpp_conn_t,
         let secured = unsafe { xmpp_conn_is_secured(conn) };
         println!("connection is {}",
                  if secured == 1 { "secured" } else { "NOT secured" });
+        unsafe { xmpp_disconnect(conn) };
     } else {
         println!("disconnected");
         unsafe { xmpp_stop(ctx) };
@@ -82,7 +83,8 @@ Note: --disable-tls conflicts with --mandatory-tls or --legacy-ssl");
         xmpp_initialize();
 
         // create a context
-        let ctx = xmpp_ctx_new(ptr::null(), ptr::null());
+        let log = xmpp_get_default_logger(XMPP_LEVEL_DEBUG);
+        let ctx = xmpp_ctx_new(ptr::null(), log);
 
         // create a connection
         let conn = xmpp_conn_new(ctx);
