@@ -1,4 +1,4 @@
-libstrophe-sys
+libstrophe-sys [![Build Status](https://travis-ci.org/tsurai/libstrophe-sys.svg?branch=master)](https://travis-ci.org/tsurai/libstrophe-sys)
 ====
 
 Rust bindings for [libstrophe](https://github.com/strophe/libstrophe) ([http://strophe.im/](http://strophe.im/libstrophe)) a simple, lightweight library for writing XMPP clients.
