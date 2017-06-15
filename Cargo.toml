@@ -1,21 +1,20 @@
 [package]
 name = "libstrophe-sys"
 license = "MIT"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Cristian Kubis <cristian.kubis@tsunix.de>"]
 description = "FFI bindings to libstrophe a simple, lightweight library for writing XMPP clients."
-documentation = "https://github.com/tsurai/libstrophe-sys"
+documentation = "https://docs.rs/libstrophe-sys"
 homepage = "https://github.com/tsurai/libstrophe-sys"
 repository = "https://github.com/tsurai/libstrophe-sys"
 readme = "README.md"
 keywords = ["strophe","libstrophe", "xmpp", "jabber"]
-build = "build.rs"
+
+[badges]
+travis-ci = { repository = "tsurai/libstrophe-sys" }
 
 [dependencies]
-libc = "^0.2.4"
-
-[build-dependencies]
-pkg-config = "0.3.2"
+libc = "^0.2.23"
 
 [lib]
 name = "strophe"
